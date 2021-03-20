@@ -172,5 +172,5 @@ class CalculateAge
 	end	
 end
 
-birthday = CalculateAge.new 
-birthday.main
+age = CalculateAge.new 
+age.main
