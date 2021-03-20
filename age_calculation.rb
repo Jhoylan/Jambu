@@ -6,7 +6,8 @@ class CalculateAge
 		
 		if input_is_correct && !birthday_is_in_future
 			years_and_months = self.months_and_years_calculation integer_birthday_array
-			self.show_message true, years_and_months			
+			years, months = years_and_months
+			puts "You have #{years} years and #{months} months"	
 		else
 			puts "Please, enter a date in the format yyyy/mm/dd considering proper values to year, month and day" if !input_is_correct
 			puts "You cannot enter a future date" if birthday_is_in_future
@@ -114,15 +115,6 @@ class CalculateAge
 		
 		return years_and_months
 	end
-
-	def show_message date_is_in_correct_format, years_and_months
-		years, months = years_and_months
-		if date_is_in_correct_format
-			puts "You have #{years} years and #{months} months"  
-		else
-			puts 'The date is in wrong format'
-		end
-	end	
 
 	def last_moth_day month, year
 		max_day = 0
