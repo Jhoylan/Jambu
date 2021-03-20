@@ -4,12 +4,15 @@ class CalculateAge
 		input_is_correct = self.input_is_correct integer_birthday_array
 		birthday_is_in_future = self.birthday_is_in_future integer_birthday_array
 		
-		if !birthday_is_in_future && input_is_correct
+		if input_is_correct && !birthday_is_in_future
 			years_and_months = self.months_and_years_calculation integer_birthday_array
-			self.show_message true, years_and_months
+			self.show_message true, years_and_months			
 		else
-			self.show_message false, years_and_months
-		end
+			puts "Please, enter a date in the format yyyy/mm/dd considering proper values to year, month and day" if !input_is_correct
+			puts "You cannot enter a future date" if birthday_is_in_future
+
+			self.main 	
+		end			
 	end
 	
 	private
@@ -39,7 +42,7 @@ class CalculateAge
 
 		birth_year, birth_month, birth_day = integer_birthday_array
 		
-		valid_year = birth_year.digits.count <= 4 && birth_year > 0
+		valid_year = birth_year.digits.count == 4 && birth_year > 0
 		valid_month = birth_month.digits.count <= 2 && birth_month > 0 && birth_month <= 12
 		last_day = self.last_moth_day birth_month,birth_year
 		valid_day = birth_day.digits.count <= 2 && birth_day > 0 && birth_day <= last_day
@@ -121,30 +124,14 @@ class CalculateAge
 		end
 	end	
 
-	def isLeap year
-		if (year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))
-			return true
-		else
-			return false
-		end
-	end
-
 	def last_moth_day month, year
 		max_day = 0
-		is_leap_year = self.isLeap year
-		last_february_day = 0
-
-		if is_leap_year
-			last_february_day = 29
-		else
-			last_february_day = 28
-		end
-
+		
 		case month
 		when 1
 			max_day = 31
 		when 2
-			max_day = last_february_day
+			max_day = 28
 		when 3
 			max_day = 31
 		when 4
